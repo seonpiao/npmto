@@ -41,7 +41,7 @@ if (argv[2] === 'install') {
       var oldName = name;
       if (config.url) {
         package = config.url;
-        oldName = path.basename(Url.parse(config.url), '.git');
+        oldName = path.basename(Url.parse(config.url).pathname, '.git');
       }
       installPackage(package);
       var to = path.join(config.to, name);
