@@ -6,6 +6,7 @@ var fs = require('fs');
 var _ = require('underscore');
 var mkdirp = require('mkdirp');
 var path = require('path');
+var Url = require('url');
 
 var argv = process.argv;
 
@@ -36,11 +37,16 @@ if (argv[2] === 'install') {
       }
     };
     _.each(npmtoPackage, function(config, name) {
-      var package = config.url || (name + '@' + config.version)
+      var package = name + '@' + config.version;
+      var oldName = name;
+      if (config.url) {
+        package = config.url;
+        oldName = path.basename(Url.parse(config.url), '.git');
+      }
       installPackage(package);
       var to = path.join(config.to, name);
       mkdirp.sync(to);
-      fs.renameSync(path.join('node_modules', name), to);
+      fs.renameSync(path.join('node_modules', oldName), to);
     });
   } else {
     //当存在--save类参数时，commander会把后面的第一个package name当做参数值一块去掉
