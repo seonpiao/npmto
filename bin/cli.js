@@ -37,7 +37,8 @@ if (argv[2] === 'install') {
       }
     };
     _.each(npmtoPackage, function(config, name) {
-      installPackage(name, config.version);
+      var package = config.url || (name + '@' + config.version)
+      installPackage(package);
       var to = path.join(config.to, name);
       mkdirp.sync(to);
       fs.renameSync(path.join('node_modules', name), to);
