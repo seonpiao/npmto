@@ -1,0 +1,13 @@
+{
+  "name": "padnum",
+  "version": "0.0.2",
+  "main": "index.js",
+  "author": {
+    "name": "piaoshihuang@wanleyun.com"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "padnum@0.0.2",
+  "scripts": {},
+  "_shasum": "29271fe76763eb58fd3aed6e3e2e9c19e0ffbdec",
+  "_from": "padnum@>=0.0.1 <0.1.0"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "npmto",
+  "version": "0.0.1",
+  "main": "./lib/npm.js",
+  "bin": {
+    "npmto": "./bin/cli.js"
+  },
+  "dependencies": {
+    "commander": "^2.8.1",
+    "mkdirp": "^0.5.1",
+    "underscore": "^1.8.3"
+  },
+  "readme": "# npmto\ninstall npm packages to custom path\n",
+  "readmeFilename": "README.md",
+  "gitHead": "dff52b97a17dd250e9b3effb6f4ec20e3b69bcf8",
+  "description": "install npm packages to custom path",
+  "_id": "npmto@0.0.1",
+  "scripts": {},
+  "_shasum": "a4fc06235c5d24e8c6c59a555a685cbfff6f7f02",
+  "_from": "npmto@*"
+}
