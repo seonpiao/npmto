@@ -1,6 +1,6 @@
 {
   "name": "npmto",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./lib/npm.js",
   "bin": {
     "npmto": "./bin/cli.js"

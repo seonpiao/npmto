@@ -17,8 +17,7 @@ var installAll = function() {
   });
 };
 
-var installPackage = function(package, version) {
-  package = package + '@' + version;
+var installPackage = function(package) {
   cp.spawnSync('npm', ['install', package], {
     env: process.env,
     stdio: 'inherit'
