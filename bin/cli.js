@@ -42,7 +42,7 @@ if (argv[2] === 'install') {
       var to = path.join(config.to, name);
       var old = path.join('node_modules', oldName);
       mkdirp.sync(to);
-      if (!fs.existsSync(to) || JSON.parse(fs.readFileSync(path.join(to, 'package.json'))).version === JSON.parse(fs.readFileSync(path.join(old, 'package.json'))).version) {
+      if (!fs.existsSync(to) || JSON.parse(fs.readFileSync(path.join(to, 'package.json'))).version !== JSON.parse(fs.readFileSync(path.join(old, 'package.json'))).version) {
         fs.renameSync(old, to);
       }
     });
