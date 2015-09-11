@@ -30,12 +30,7 @@ if (argv[2] === 'install') {
   if (argv.length === 3) {
     installAll();
     var settings = JSON.parse(fs.readFileSync('package.json'));
-    var npmtoPackage = settings.npmto || {
-      "padnum": {
-        "version": "~0.0.1",
-        "to": "pages"
-      }
-    };
+    var npmtoPackage = settings.npmto || {};
     _.each(npmtoPackage, function(config, name) {
       var package = name + '@' + config.version;
       var oldName = name;
@@ -45,8 +40,11 @@ if (argv[2] === 'install') {
       }
       installPackage(package);
       var to = path.join(config.to, name);
+      var old = path.join('node_modules', oldName);
       mkdirp.sync(to);
-      fs.renameSync(path.join('node_modules', oldName), to);
+      if (!fs.existsSync(to) || JSON.parse(fs.readFileSync(path.join(to, 'package.json'))).version === JSON.parse(fs.readFileSync(path.join(old, 'package.json'))).version) {
+        fs.renameSync(old, to);
+      }
     });
   } else {
     //当存在--save类参数时，commander会把后面的第一个package name当做参数值一块去掉
