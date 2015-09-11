@@ -12,17 +12,25 @@ var argv = process.argv;
 
 var installAll = function() {
   var cpArgv = process.argv.slice(2);
-  cp.spawnSync('npm', cpArgv, {
-    env: process.env,
-    stdio: 'inherit'
-  });
+  try {
+    cp.spawnSync('npm', cpArgv, {
+      env: process.env,
+      stdio: 'inherit'
+    });
+  } catch (e) {
+    console.warn('npm install all failed');
+  }
 };
 
 var installPackage = function(package) {
-  cp.spawnSync('npm', ['install', package], {
-    env: process.env,
-    stdio: 'inherit'
-  });
+  try {
+    cp.spawnSync('npm', ['install', package], {
+      env: process.env,
+      stdio: 'inherit'
+    });
+  } catch (e) {
+    console.warn('npm install ' + package + ' failed');
+  }
 };
 
 if (argv[2] === 'install') {
@@ -44,7 +52,6 @@ if (argv[2] === 'install') {
       mkdirp.sync(to);
       //空项目没有package.json
       try {
-
         if (!fs.existsSync(to) || JSON.parse(fs.readFileSync(path.join(to, 'package.json'))).version !== JSON.parse(fs.readFileSync(path.join(old, 'package.json'))).version) {
           fs.renameSync(old, to);
         }
