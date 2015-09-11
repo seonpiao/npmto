@@ -42,9 +42,13 @@ if (argv[2] === 'install') {
       var to = path.join(config.to, name);
       var old = path.join('node_modules', oldName);
       mkdirp.sync(to);
-      if (!fs.existsSync(to) || JSON.parse(fs.readFileSync(path.join(to, 'package.json'))).version !== JSON.parse(fs.readFileSync(path.join(old, 'package.json'))).version) {
-        fs.renameSync(old, to);
-      }
+      //空项目没有package.json
+      try {
+
+        if (!fs.existsSync(to) || JSON.parse(fs.readFileSync(path.join(to, 'package.json'))).version !== JSON.parse(fs.readFileSync(path.join(old, 'package.json'))).version) {
+          fs.renameSync(old, to);
+        }
+      } catch (e) {}
     });
   } else {
     //当存在--save类参数时，commander会把后面的第一个package name当做参数值一块去掉
